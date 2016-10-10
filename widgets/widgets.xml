@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+        <template id="assets_backend" name="petstore_assets" inherit_id="web.assets_backend">
+            <xpath expr="." position="inside">
+                <script type="text/javascript" src="/widgets/static/lib/dygraph-combined.js"/>
+                <script type="text/javascript" src="/widgets/static/src/js/dygraphs.js"/>
+            </xpath>
+        </template>
+    </data>
+</openerp>
