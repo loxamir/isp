@@ -1,0 +1,271 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <!-- account.analytic.account -->
+        <record id="isp_contract_form_view" model="ir.ui.view">
+            <field name="name">isp.contract.form</field>
+            <field name="model">account.analytic.account</field>
+            <field name="inherit_id" ref="analytic.view_account_analytic_account_form"></field>
+            <field name="arch" type="xml">
+                <field name="manager_id" position="after">
+                    <field name="agent" required="0"/>
+                    <field name="install_agent" required="0"/>
+                </field>
+                <xpath expr="//notebook" position="inside">
+                    <page string="ISP" attrs="{'invisible':[('type','not in','contract')]}">
+                        <group>
+                             <group>
+                                <field name="place_id" context="{'default_contract_id':id}"/>
+                                <field name="username"/>
+                                <field name="password"/>
+                                <!--field name="internet_user_id"/-->
+                                <field name="is_wireless" attrs="{'readonly':[('is_fiber','=',True)]}"/>
+                                <field name="is_fiber" attrs="{'readonly':[('is_wireless','=',True)]}"/>
+                                <field name="box_id" attrs="{'invisible':[('is_fiber','=',False)],'required':[('is_fiber','=',True)]}"/>
+                                <field name="net_id" attrs="{'invisible':[('is_wireless','=',False)],'required':[('is_wireless','=',True)]}"/>
+                            </group>
+                            <group>
+				<field name="ip" string="IP Address" domain="[('contract_id','=',False)]" context="{'default_contract_id':id}"/>
+				<field name="device_id" context="{'default_is_client':1,'default_contract_id':id}"/>
+                                <field name="upload" readonly="1"/>
+                                <field name="download" readonly="1"/>
+                                <field name="is_locked" readonly="1"/>
+                                <field name="late_payment" readonly="1"/>
+                                <button name="action_unlock" type="object" string="Unlock for 5 days" attrs="{'invisible':[('is_locked','=',False)]}"/><div/>
+                                <field name="next_lock" readonly="1"/>
+                            </group>
+                        </group>
+                        <group>
+                            <!--field name="lending_equipment" readonly="1">
+                                <tree editable="top">
+                                    <field name="name"/>
+                                    <field name="ip"/>
+                                    <field name="access_port"/>
+                                    <field name="login"/>
+                                    <field name="password"/>
+                                </tree>
+                            </field-->
+                            <field name="port_redirection_ids">
+                                <tree editable="top">
+                                    <field name="port"/>
+                                    <field name="ip"/>
+                                    <field name="reason"/>
+                                </tree>
+                            </field>
+                        </group>
+                    </page>
+                    <!--page string="Graphic" attrs="{'invisible':[('type','not in','contract')]}">
+                        <group>
+                            <field name="grafico" widget="dygraphs" nolabel="1"/>
+                        </group>
+                        <group>
+                            <group>
+                                <field name="date_from"/>
+                                <field name="ip" readonly="1"/>
+
+                            </group>
+                            <group>
+                                <field name="date_to"/>
+                            </group>
+                        </group>
+
+                    </page-->
+                </xpath>
+
+            </field>
+        </record>
+
+        <record id="isp_contract_inherit_form_view2" model="ir.ui.view">
+            <field name="name">Is_Locked Editable</field>
+            <field name="model">account.analytic.account</field>
+            <field name="inherit_id" ref="isp.isp_clients_form_view"/>
+            <field name="groups_id" eval="[(6, 0, [ref('isp.isp_manager')])]"/>
+            <field name="arch" type="xml">
+                <field name="is_locked" position="attributes">
+                    <attribute name="readonly">False</attribute>
+                </field>
+                <field name="next_lock" position="attributes">
+                    <attribute name="readonly">False</attribute>
+                    <attribute name="attrs">{'invisible':['|',('is_locked','=',True)]}</attribute>
+                </field>
+            </field>
+        </record>
+
+
+        <record id="isp_contract_search" model="ir.ui.view">
+            <field name="name">Search MAC or Username</field>
+            <field name="model">account.analytic.account</field>
+            <field name="inherit_id" ref="account_analytic_analysis.view_account_analytic_account_overdue_search"/>
+            <field name="arch" type="xml">
+                <field name="name" position="before">
+                     <field name="name"
+                         filter_domain="[
+                         '|',('client_device_mac','ilike',self),
+                         ('username','ilike',self)]"
+                         string="MAC o Login"/>
+                </field>
+            </field>
+        </record>
+
+
+        <!-- This inherit an inherit view -->
+        <record id="isp_contract_inherit_form_view" model="ir.ui.view">
+            <field name="name">isp.contract.inherit.form</field>
+            <field name="model">account.analytic.account</field>
+            <field name="inherit_id" ref="account_analytic_analysis.account_analytic_account_form_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//notebook/page[@string='Contract Information']/group/field[@name='recurring_next_date']" position="before">
+                    <field name="next_invoice_due_date"/>
+                </xpath>
+                <xpath expr="//notebook/page[@string='Contract Information']/group/field[@name='recurring_next_date']" position="after">
+                    <field name="pricelist_id"/>
+                </xpath>
+            </field>
+        </record>
+
+
+        <!-- account.analytic.account -->
+        <record id="isp_clients_tree_view" model="ir.ui.view">
+            <field name="name">isp.clients.tree</field>
+            <field name="model">account.analytic.account</field>
+            <field name="arch" type="xml">
+                <tree colors="blue:state=='pending';grey:state in ('close','cancelled');blue:type=='view'" string="Analytic account" toolbar="1">
+                    <field name="name"/>
+                    <field name="complete_name" invisible="1"/>
+                    <field name="download"/>
+                    <field name="upload"/>
+                    <field name="state"/>
+                    <field name="date" invisible="1"/>
+                    <field name="user_id" invisible="1"/>
+                    <field name="partner_id" invisible="1"/>
+                    <field name="parent_id" invisible="1"/>
+                    <field name="template_id" invisible="1"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="isp_clients_form_view" model="ir.ui.view">
+            <field name="name">isp.clients.form</field>
+            <field name="model">account.analytic.account</field>
+            <field name="arch" type="xml">
+                <form>
+                    <header>
+                        <button name="action_unlock" type="object" string="Unlock for 5 days" attrs="{'invisible':[('is_locked','=',False)]}"/>
+                        <field name="state" widget="statusbar"/>
+                    </header>
+                    <sheet>
+                        <group name="main">
+                            <group>
+                                <field name="name"/>
+                                <field name="partner_id" on_change="on_change_partner_id(partner_id, name)"/>
+                                <field name="is_wireless" attrs="{'invisible':[('is_fiber','=',True)]}"/>
+                                <field name="is_fiber" attrs="{'invisible':[('is_wireless','=',True)]}"/>
+                                <field name="type" invisible="1"/>
+                                <field name="access_url" widget="html"/>
+                            </group>
+                            <group>
+                                <field name="is_locked" readonly="1"/>
+                                <field name="late_payment" readonly="1"/>
+                                <field name="device_id" context="{'default_is_client':1,'default_contract_id':id}"/>
+                                <field name="place_id" context="{'default_contract_id':id}"/>
+                                <field name="next_lock" readonly="1" attrs="{'invisible':['|',('is_locked','=',True),('late_payment','=',False)]}"/>
+                                <field name="box_id" attrs="{'invisible':[('is_fiber','=',False)],'required':[('is_fiber','=',True)]}"/>
+                                <field name="net_id" attrs="{'invisible':[('is_wireless','=',False)],'required':[('is_wireless','=',True)]}"/>
+                            </group>
+                        </group>
+                        <notebook>
+                            <page string="ISP">
+                                <group>
+                                    <group>
+                                        <field name="username" groups="isp.isp_technical"/>
+                                        <field name="password" groups="isp.isp_technical"/>
+                                        <field name="ip"/>
+                                        <field name="ip_detected"/>
+                                        <field name="uptime"/>
+                                    </group>
+                                    <group>
+                                        <field name="upload" readonly="1"/>
+                                        <field name="download" readonly="1"/>
+                                        <field name="limit_upload"/>
+                                        <field name="limit_download"/>
+                                        <field name="mac_detected"/>
+                                    </group>
+                                </group>
+                                <field name="port_redirection_ids">
+                                    <tree editable="top">
+                                        <field name="port"/>
+                                        <field name="ip"/>
+                                        <field name="reason"/>
+                                    </tree>
+                                </field>
+                            </page>
+                            <page string="Gráficos">
+                                <group>
+                                    <label for="graph_url"/><div/>
+                                    <field name="graph_url" widget="html"
+                                        nolabel="1"/><div/>
+                                    <label for="graph_ping_url"/><div/>
+                                    <field name="graph_ping_url" widget="html"
+                                        nolabel="1"/><div/>
+                                    <label for="graph_day_url"/><div/>
+                                    <field name="graph_day_url" widget="html"
+                                        nolabel="1"/><div/>
+                                    <label for="graph_week_url"/><div/>
+                                    <field name="graph_week_url" widget="html"
+                                        nolabel="1"/><div/>
+                                    <label for="graph_month_url"/><div/>
+                                    <field name="graph_month_url" widget="html"
+                                        nolabel="1"/><div/>
+                                    <label for="graph_year_url"/><div/>
+                                    <field name="graph_year_url" widget="html"
+                                        nolabel="1"/><div/>
+                                </group>
+                            </page>
+                            <page string="Servicios">
+                                <field name="task_ids">
+                                    <tree>
+                                        <field name="name"/>
+                                        <field name="create_date"/>
+                                        <field name="stage_id"/>
+                                    </tree>
+                                </field>
+                            </page>
+                            <page string="Facturas Vencidas">
+                                <field name="invoice_ids">
+                                </field>
+                            </page>
+                        </notebook>
+                    </sheet>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids" widget="mail_followers"/>
+                        <field name="message_ids" widget="mail_thread"/>
+                    </div>
+                </form>
+            </field>
+        </record>
+
+        <record id="action_isp_clients" model="ir.actions.act_window">
+            <field name="name">ISP Clients</field>
+            <field name="res_model">account.analytic.account</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">form,tree</field>
+        </record>
+
+        <record id="action_isp_clients_tree" model="ir.actions.act_window.view">
+            <field eval="1" name="sequence"/>
+            <field name="view_mode">tree</field>
+            <field name="act_window_id" ref="action_isp_clients"/>
+            <field name="view_id" ref="isp_clients_tree_view"/>
+        </record>
+
+        <record id="action_isp_clients_form" model="ir.actions.act_window.view">
+            <field eval="2" name="sequence"/>
+            <field name="view_mode">form</field>
+            <field name="act_window_id" ref="action_isp_clients"/>
+            <field name="view_id" ref="isp_clients_form_view"/>
+        </record>
+
+        <menuitem parent="isp_technical_submenu" action="action_isp_clients"
+        id="isp_clients_menu" name="Clients" sequence="20" groups="isp.isp_attendant"/>
+    </data>
+</openerp>

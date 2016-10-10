@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <record  model="ir.ui.view" id="crm_lead_isp_form">
+            <field name="name">crm.lead.isp.form</field>
+            <field name="model">crm.lead</field>
+            <field name="inherit_id" ref="crm.crm_case_form_view_leads"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='function']" position="before">
+                    <field name="responsible"/>
+                </xpath>
+                 <xpath expr="//field[@name='fax']" position="after">
+                     <field name="current_supplier"/>
+                     <field name="current_speed"/>
+                     <field name="current_price"/>
+                </xpath>
+            </field>
+        </record>
+        <record  model="ir.ui.view" id="crm_lead_isp_oppor_form">
+            <field name="name">crm.lead.isp.oppor.form</field>
+            <field name="model">crm.lead</field>
+            <field name="inherit_id" ref="crm.crm_case_form_view_oppor"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='function']" position="before">
+                    <field name="responsible"/>
+                </xpath>
+                 <xpath expr="//field[@name='fax']" position="after">
+                     <field name="current_supplier"/>
+                     <field name="current_speed"/>
+                     <field name="current_price"/>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</openerp>

@@ -1,0 +1,638 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* isp
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 8.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2015-08-24 20:13+0000\n"
+"PO-Revision-Date: 2015-08-24 16:20-0400\n"
+"Last-Translator: Marcelo Pickler <loxamir@gmail.com>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: es_PY\n"
+"X-Generator: Poedit 1.5.4\n"
+
+#. module: isp
+#: field:isp.net,ap_id:0
+msgid "Access Point"
+msgstr "Punto de Acceso"
+
+#. module: isp
+#: field:isp.device,asset_id:0
+msgid "Accounting Asset"
+msgstr "Activo Contable"
+
+#. module: isp
+#: model:ir.model,name:isp.model_account_analytic_account
+msgid "Analytic Account"
+msgstr "Cuenta Analítica"
+
+#. module: isp
+#: field:account.analytic.account,box_id:0
+#: model:ir.ui.menu,name:isp.isp_box_menu
+msgid "Box"
+msgstr "Caja"
+
+#. module: isp
+#: view:isp.box:isp.isp_box_form view:isp.device:isp.isp_device_form
+#: view:isp.gpon:isp.isp_gpon_form view:isp.ip:isp.isp_ip_form
+#: view:isp.manager:isp.isp_manager_form view:isp.net:isp.isp_net_form
+#: view:isp.network:isp.isp_network_form view:isp.point:isp.isp_point_form
+msgid "Busqueda"
+msgstr ""
+
+#. module: isp
+#: field:project.task.materials,category_id:0
+msgid "Category"
+msgstr "Categoria"
+
+#. module: isp
+#: view:project.task:isp.isp_task_form_view
+msgid "Concluir Tarea"
+msgstr "Concluir tarea"
+
+#. module: isp
+#: field:isp.device,conexion_point_id:0
+msgid "Conexion Point"
+msgstr "Ponto de conexion"
+
+#. module: isp
+#: field:lending.equipment,related_field:0
+msgid "Contract"
+msgstr "Contrato"
+
+#. module: isp
+#: field:isp.box,create_uid:0 field:isp.device,create_uid:0
+#: field:isp.gpon,create_uid:0 field:isp.ip,create_uid:0
+#: field:isp.manager,create_uid:0 field:isp.net,create_uid:0
+#: field:isp.network,create_uid:0 field:isp.point,create_uid:0
+#: field:lending.equipment,create_uid:0
+#: field:project.task.materials,create_uid:0 field:ruc.list,create_uid:0
+msgid "Created by"
+msgstr ""
+
+#. module: isp
+#: field:isp.box,create_date:0 field:isp.device,create_date:0
+#: field:isp.gpon,create_date:0 field:isp.ip,create_date:0
+#: field:isp.manager,create_date:0 field:isp.net,create_date:0
+#: field:isp.network,create_date:0 field:isp.point,create_date:0
+#: field:lending.equipment,create_date:0
+#: field:project.task.materials,create_date:0 field:ruc.list,create_date:0
+msgid "Created on"
+msgstr ""
+
+#. module: isp
+#: field:isp.network,date_time:0
+msgid "Date"
+msgstr ""
+
+#. module: isp
+#: field:account.analytic.account,date_from:0
+msgid "Date From"
+msgstr "Fecha Inicial"
+
+#. module: isp
+#: help:isp.box,message_last_post:0 help:isp.device,message_last_post:0
+#: help:isp.gpon,message_last_post:0 help:isp.ip,message_last_post:0
+#: help:isp.manager,message_last_post:0 help:isp.net,message_last_post:0
+#: help:isp.network,message_last_post:0 help:isp.point,message_last_post:0
+#: help:lending.equipment,message_last_post:0
+msgid "Date of the last message posted on the record."
+msgstr ""
+
+#. module: isp
+#: field:account.analytic.account,date_to:0
+msgid "Date to"
+msgstr "Fecha Final"
+
+#. module: isp
+#: model:ir.ui.menu,name:isp.isp_device_menu
+msgid "Devices"
+msgstr "Dispositivos"
+
+#. module: isp
+#: field:ruc.list,dv:0
+msgid "Digito Verificador(DV)"
+msgstr "Dígito Verificador"
+
+#. module: isp
+#: field:lending.equipment,name:0
+msgid "Equipment"
+msgstr "Equipo"
+
+#. module: isp
+#: field:isp.box,message_follower_ids:0
+#: field:isp.device,message_follower_ids:0
+#: field:isp.gpon,message_follower_ids:0 field:isp.ip,message_follower_ids:0
+#: field:isp.manager,message_follower_ids:0
+#: field:isp.net,message_follower_ids:0
+#: field:isp.network,message_follower_ids:0
+#: field:isp.point,message_follower_ids:0
+#: field:lending.equipment,message_follower_ids:0
+msgid "Followers"
+msgstr ""
+
+#. module: isp
+#: model:ir.ui.menu,name:isp.isp_gpon_menu field:isp.box,gpon_id:0
+msgid "GPON"
+msgstr ""
+
+#. module: isp
+#: view:account.analytic.account:isp.isp_contract_form_view
+msgid "Generate Graph"
+msgstr "Generar Gráfico"
+
+#. module: isp
+#: field:isp.ip,have_internet:0
+msgid "Have Internet"
+msgstr "Tiene Internet"
+
+#. module: isp
+#: help:isp.box,message_summary:0 help:isp.device,message_summary:0
+#: help:isp.gpon,message_summary:0 help:isp.ip,message_summary:0
+#: help:isp.manager,message_summary:0 help:isp.net,message_summary:0
+#: help:isp.network,message_summary:0 help:isp.point,message_summary:0
+#: help:lending.equipment,message_summary:0
+msgid ""
+"Holds the Chatter summary (number of messages, ...). This summary is "
+"directly in html format in order to be inserted in kanban views."
+msgstr ""
+
+#. module: isp
+#: field:isp.box,id:0 field:isp.device,id:0 field:isp.gpon,id:0
+#: field:isp.ip,id:0 field:isp.manager,id:0 field:isp.net,id:0
+#: field:isp.network,id:0 field:isp.point,id:0 field:lending.equipment,id:0
+#: field:project.task.materials,id:0 field:ruc.list,id:0
+msgid "ID"
+msgstr ""
+
+#. module: isp
+#: field:isp.device,ip:0 field:isp.ip,name:0 field:isp.manager,ip:0
+#: field:isp.network,ip:0
+msgid "IP Address"
+msgstr ""
+
+#. module: isp
+#: view:account.analytic.account:isp.isp_contract_form_view
+#: model:ir.module.category,name:isp.isp model:ir.ui.menu,name:isp.isp_menu
+msgid "ISP"
+msgstr ""
+
+#. module: isp
+#: model:res.groups,name:isp.isp_attendant
+msgid "ISP Attendant"
+msgstr ""
+
+#. module: isp
+#: model:ir.actions.act_window,name:isp.action_isp_box
+#: model:ir.actions.act_window,name:isp.action_isp_gpon
+#: model:ir.model,name:isp.model_isp_box view:isp.box:isp.view_isp_box_tree
+msgid "ISP Box"
+msgstr ""
+
+#. module: isp
+#: model:ir.model,name:isp.model_isp_point
+msgid "ISP Conexion Point"
+msgstr ""
+
+#. module: isp
+#: model:ir.model,name:isp.model_isp_device
+msgid "ISP Device"
+msgstr ""
+
+#. module: isp
+#: model:ir.model,name:isp.model_isp_equipment
+msgid "ISP Equipment"
+msgstr ""
+
+#. module: isp
+#: model:ir.model,name:isp.model_isp_gpon view:isp.gpon:isp.view_isp_gpon_tree
+msgid "ISP GPON"
+msgstr ""
+
+#. module: isp
+#: model:ir.model,name:isp.model_isp_ip
+msgid "ISP IP"
+msgstr ""
+
+#. module: isp
+#: model:ir.model,name:isp.model_project_task_materials
+msgid "ISP Instalation"
+msgstr ""
+
+#. module: isp
+#: model:ir.model,name:isp.model_isp_lending
+msgid "ISP Lending"
+msgstr ""
+
+#. module: isp
+#: model:ir.model,name:isp.model_isp model:ir.model,name:isp.model_isp_manager
+msgid "ISP Manager"
+msgstr ""
+
+#. module: isp
+#: model:ir.model,name:isp.model_isp_net
+msgid "ISP Net"
+msgstr ""
+
+#. module: isp
+#: model:ir.model,name:isp.model_isp_network
+msgid "ISP Network"
+msgstr ""
+
+#. module: isp
+#: view:isp.net:isp.view_isp_net_tree
+msgid "ISP Port"
+msgstr ""
+
+#. module: isp
+#: model:res.groups,name:isp.isp_technical
+msgid "ISP Technical"
+msgstr ""
+
+#. module: isp
+#: model:ir.actions.act_window,name:isp.action_isp_device
+#: model:ir.actions.act_window,name:isp.action_isp_manager
+#: model:ir.actions.act_window,name:isp.action_isp_net
+#: model:ir.actions.act_window,name:isp.action_isp_point
+#: model:ir.model,name:isp.model_isp_user
+msgid "ISP User"
+msgstr ""
+
+#. module: isp
+#: view:isp.device:isp.view_isp_device_tree
+#: view:isp.manager:isp.view_isp_manager_tree
+#: view:isp.point:isp.view_isp_point_tree
+msgid "ISP Users"
+msgstr ""
+
+#. module: isp
+#: model:ir.actions.act_window,name:isp.action_isp_ip
+#: view:isp.ip:isp.view_isp_ip_tree
+msgid "ISP ip"
+msgstr ""
+
+#. module: isp
+#: model:ir.actions.act_window,name:isp.action_isp_network
+#: view:isp.network:isp.view_isp_network_tree
+msgid "ISP network"
+msgstr ""
+
+#. module: isp
+#: model:ir.model,name:isp.model_isp_port
+msgid "ISP port"
+msgstr ""
+
+#. module: isp
+#: help:isp.box,message_unread:0 help:isp.device,message_unread:0
+#: help:isp.gpon,message_unread:0 help:isp.ip,message_unread:0
+#: help:isp.manager,message_unread:0 help:isp.net,message_unread:0
+#: help:isp.network,message_unread:0 help:isp.point,message_unread:0
+#: help:lending.equipment,message_unread:0
+msgid "If checked new messages require your attention."
+msgstr ""
+
+#. module: isp
+#: field:isp.device,is_ap:0
+msgid "Is Acess Point"
+msgstr "Es punto de acceso"
+
+#. module: isp
+#: field:isp.device,is_client:0
+msgid "Is Client"
+msgstr "Es Cliente"
+
+#. module: isp
+#: field:account.analytic.account,is_fiber:0 field:isp.net,is_fiber:0
+msgid "Is Fiber"
+msgstr "Es Fibra"
+
+#. module: isp
+#: field:isp.device,is_olt:0
+msgid "Is OLT"
+msgstr ""
+
+#. module: isp
+#: field:isp.ip,is_real:0
+msgid "Is Real IP"
+msgstr "Es un IP Real"
+
+#. module: isp
+#: field:isp.device,is_router:0
+msgid "Is Router"
+msgstr "Es ruteador"
+
+#. module: isp
+#: field:account.analytic.account,is_wireless:0 field:isp.net,is_wireless:0
+msgid "Is Wireless"
+msgstr "Es wireless"
+
+#. module: isp
+#: field:isp.box,message_is_follower:0 field:isp.device,message_is_follower:0
+#: field:isp.gpon,message_is_follower:0 field:isp.ip,message_is_follower:0
+#: field:isp.manager,message_is_follower:0 field:isp.net,message_is_follower:0
+#: field:isp.network,message_is_follower:0
+#: field:isp.point,message_is_follower:0
+#: field:lending.equipment,message_is_follower:0
+msgid "Is a Follower"
+msgstr ""
+
+#. module: isp
+#: field:project.task.materials,is_lending:0
+msgid "Is lending"
+msgstr ""
+
+#. module: isp
+#: field:account.analytic.account,ip:0
+msgid "Last IP Address"
+msgstr ""
+
+#. module: isp
+#: field:isp.box,message_last_post:0 field:isp.device,message_last_post:0
+#: field:isp.gpon,message_last_post:0 field:isp.ip,message_last_post:0
+#: field:isp.manager,message_last_post:0 field:isp.net,message_last_post:0
+#: field:isp.network,message_last_post:0 field:isp.point,message_last_post:0
+#: field:lending.equipment,message_last_post:0
+msgid "Last Message Date"
+msgstr ""
+
+#. module: isp
+#: field:isp.box,write_uid:0 field:isp.device,write_uid:0
+#: field:isp.gpon,write_uid:0 field:isp.ip,write_uid:0
+#: field:isp.manager,write_uid:0 field:isp.net,write_uid:0
+#: field:isp.network,write_uid:0 field:isp.point,write_uid:0
+#: field:lending.equipment,write_uid:0
+#: field:project.task.materials,write_uid:0 field:ruc.list,write_uid:0
+msgid "Last Updated by"
+msgstr ""
+
+#. module: isp
+#: field:isp.box,write_date:0 field:isp.device,write_date:0
+#: field:isp.gpon,write_date:0 field:isp.ip,write_date:0
+#: field:isp.manager,write_date:0 field:isp.net,write_date:0
+#: field:isp.network,write_date:0 field:isp.point,write_date:0
+#: field:lending.equipment,write_date:0
+#: field:project.task.materials,write_date:0 field:ruc.list,write_date:0
+msgid "Last Updated on"
+msgstr ""
+
+#. module: isp
+#: field:isp.box,latitud:0 field:isp.point,latitud:0
+msgid "Latitud"
+msgstr ""
+
+#. module: isp
+#: field:account.analytic.account,lending_equipment:0
+#: model:ir.model,name:isp.model_lending_equipment
+msgid "Lending Equipment"
+msgstr "Equipo en comodato"
+
+#. module: isp
+#: field:isp.device,login:0
+msgid "Login"
+msgstr ""
+
+#. module: isp
+#: field:isp.box,longitud:0 field:isp.point,longitud:0
+msgid "Longitud"
+msgstr ""
+
+#. module: isp
+#: field:isp.network,loss:0
+msgid "Loss"
+msgstr "Perdida"
+
+#. module: isp
+#: field:project.task.materials,mac:0
+msgid "MAC Address"
+msgstr ""
+
+#. module: isp
+#: model:ir.ui.menu,name:isp.isp_manager_menu field:isp.net,manager_id:0
+msgid "Manager"
+msgstr ""
+
+#. module: isp
+#: field:isp.network,mean:0
+msgid "Mean"
+msgstr "Promedio"
+
+#. module: isp
+#: field:isp.box,message_ids:0 field:isp.device,message_ids:0
+#: field:isp.gpon,message_ids:0 field:isp.ip,message_ids:0
+#: field:isp.manager,message_ids:0 field:isp.net,message_ids:0
+#: field:isp.network,message_ids:0 field:isp.point,message_ids:0
+#: field:lending.equipment,message_ids:0
+msgid "Messages"
+msgstr ""
+
+#. module: isp
+#: help:isp.box,message_ids:0 help:isp.device,message_ids:0
+#: help:isp.gpon,message_ids:0 help:isp.ip,message_ids:0
+#: help:isp.manager,message_ids:0 help:isp.net,message_ids:0
+#: help:isp.network,message_ids:0 help:isp.point,message_ids:0
+#: help:lending.equipment,message_ids:0
+msgid "Messages and communication history"
+msgstr ""
+
+#. module: isp
+#: field:isp.box,name:0 field:isp.device,name:0 field:isp.gpon,name:0
+#: field:isp.manager,name:0 field:isp.net,name:0 field:isp.point,name:0
+msgid "Name"
+msgstr "Nombre"
+
+#. module: isp
+#: field:isp.gpon,net_id:0
+msgid "Network"
+msgstr ""
+
+#. module: isp
+#: model:res.groups,name:isp.isp_manager
+msgid "Network Manager"
+msgstr "Gerente de red"
+
+#. module: isp
+#: view:isp.network:isp.view_isp_network_gaph
+msgid "Network Reports"
+msgstr ""
+
+#. module: isp
+#: field:ruc.list,name:0
+msgid "Nombre"
+msgstr ""
+
+#. module: isp
+#: field:ruc.list,other:0
+msgid "Otro"
+msgstr ""
+
+#. module: isp
+#: field:isp.gpon,pon_way:0
+msgid "PON Way"
+msgstr ""
+
+#. module: isp
+#: field:account.analytic.account,password:0 field:isp.device,password:0
+msgid "Password"
+msgstr ""
+
+#. module: isp
+#: field:isp.network,ping_id:0
+msgid "Ping ID"
+msgstr ""
+
+#. module: isp
+#: model:ir.ui.menu,name:isp.isp_point_menu
+msgid "Point"
+msgstr "Punto"
+
+#. module: isp
+#: model:ir.ui.menu,name:isp.isp_net_menu
+msgid "Port"
+msgstr "Puerta"
+
+#. module: isp
+#: field:project.task.materials,product_id:0
+msgid "Product"
+msgstr "Producto"
+
+#. module: isp
+#: field:project.task.materials,qty:0
+msgid "Quantity"
+msgstr "Cantidad"
+
+#. module: isp
+#: model:ir.model,name:isp.model_ruc_list
+msgid "RUC List"
+msgstr ""
+
+#. module: isp
+#: field:ruc.list,ruc:0
+msgid "RUC sin DV"
+msgstr ""
+
+#. module: isp
+#: field:project.task.materials,related_field:0
+msgid "Related field"
+msgstr ""
+
+#. module: isp
+#: field:isp.gpon,router_id:0 field:isp.net,router_id:0
+msgid "Router"
+msgstr "Ruteador"
+
+#. module: isp
+#: field:account.analytic.account,net_id:0
+msgid "SSID"
+msgstr ""
+
+#. module: isp
+#: field:isp.device,serial_id:0
+msgid "Serial Number"
+msgstr "Numero Serial"
+
+#. module: isp
+#: field:isp.manager,software:0
+msgid "Software"
+msgstr ""
+
+#. module: isp
+#: field:account.analytic.account,speed:0
+msgid "Speed (Mbps)"
+msgstr "Velocidad (Mbps)"
+
+#. module: isp
+#: field:isp.box,message_summary:0 field:isp.device,message_summary:0
+#: field:isp.gpon,message_summary:0 field:isp.ip,message_summary:0
+#: field:isp.manager,message_summary:0 field:isp.net,message_summary:0
+#: field:isp.network,message_summary:0 field:isp.point,message_summary:0
+#: field:lending.equipment,message_summary:0
+msgid "Summary"
+msgstr ""
+
+#. module: isp
+#: model:ir.model,name:isp.model_project_task
+msgid "Task"
+msgstr ""
+
+#. module: isp
+#: field:project.task,task_done:0
+msgid "Task Done"
+msgstr ""
+
+#. module: isp
+#: model:ir.ui.menu,name:isp.isp_technical_submenu
+msgid "Technical"
+msgstr ""
+
+#. module: isp
+#: sql_constraint:account.analytic.account:0
+msgid "The username is already in use"
+msgstr ""
+
+#. module: isp
+#: field:isp.box,message_unread:0 field:isp.device,message_unread:0
+#: field:isp.gpon,message_unread:0 field:isp.ip,message_unread:0
+#: field:isp.manager,message_unread:0 field:isp.net,message_unread:0
+#: field:isp.network,message_unread:0 field:isp.point,message_unread:0
+#: field:lending.equipment,message_unread:0
+msgid "Unread Messages"
+msgstr ""
+
+#. module: isp
+#: field:project.task,used_materials:0
+msgid "Used Materials"
+msgstr ""
+
+#. module: isp
+#: field:isp.network,user_id:0
+msgid "User"
+msgstr ""
+
+#. module: isp
+#: field:account.analytic.account,internet_user_id:0
+msgid "User ID"
+msgstr ""
+
+#. module: isp
+#: field:account.analytic.account,username:0
+msgid "Username"
+msgstr ""
+
+#. module: isp
+#: field:isp.box,website_message_ids:0 field:isp.device,website_message_ids:0
+#: field:isp.gpon,website_message_ids:0 field:isp.ip,website_message_ids:0
+#: field:isp.manager,website_message_ids:0 field:isp.net,website_message_ids:0
+#: field:isp.network,website_message_ids:0
+#: field:isp.point,website_message_ids:0
+#: field:lending.equipment,website_message_ids:0
+msgid "Website Messages"
+msgstr ""
+
+#. module: isp
+#: help:isp.box,website_message_ids:0 help:isp.device,website_message_ids:0
+#: help:isp.gpon,website_message_ids:0 help:isp.ip,website_message_ids:0
+#: help:isp.manager,website_message_ids:0 help:isp.net,website_message_ids:0
+#: help:isp.network,website_message_ids:0 help:isp.point,website_message_ids:0
+#: help:lending.equipment,website_message_ids:0
+msgid "Website communication history"
+msgstr ""
+
+#. module: isp
+#: model:ir.ui.menu,name:isp.isp_ip_menu
+msgid "ip"
+msgstr ""
+
+#. module: isp
+#: view:isp.ip:isp.view_isp_ip_gaph
+msgid "ip Reports"
+msgstr ""
+
+#. module: isp
+#: model:ir.ui.menu,name:isp.isp_network_menu
+msgid "network"
+msgstr ""

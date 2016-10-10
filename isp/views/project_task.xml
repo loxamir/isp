@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <!-- project.task -->
+        <record id="isp_task_form_view" model="ir.ui.view">
+            <field name="name">isp.task.form</field>
+            <field name="model">project.task</field>
+            <field name="inherit_id" ref="project.view_task_form2"></field>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='stage_id']" position="before">
+                    <button name="action_done" type="object" string="Concluir Tarea" attrs="{'invisible':[('task_done','=',True)]}"/>
+                </xpath>
+                <xpath expr="//field[@name='categ_ids']" position="after">
+                    <field name="contract_id" readonly="1" context="{'form_view_ref': 'isp.isp_clients_form_view'}"/>
+                </xpath>
+                <xpath expr="//page[@string='Description']/field[@name='work_ids']" position="after">
+                    <label string="Consumed Materials"/>
+                        <field name="task_done" invisible="1"/>
+                        <field name="used_materials">
+                            <tree editable="bottom">
+                                <field name="product_id"/>
+                                <field name="qty"/>
+                                <!--field name="is_lending"/-->
+                                <field name="serial"/>
+                                <!--field name="category_id" attrs="{'readonly':[('is_lending','=',False)],'required':[('is_lending','=',True)]}"/-->
+                            </tree>
+                        </field>
+                </xpath>
+            
+            </field>
+        </record>
+    </data>
+</openerp>

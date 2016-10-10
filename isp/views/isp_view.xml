@@ -1,0 +1,513 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+        <menuitem  id="isp_menu" name="ISP" sequence="10"/>
+        <menuitem parent="isp_menu" id="isp_technical_submenu" name="Technical" sequence="10" groups="isp.isp_attendant"/>
+        <menuitem parent="isp_menu" id="isp_fiber_submenu" name="Optic Fiber" sequence="20" groups="isp.isp_technical"/>
+        <menuitem parent="isp_menu" id="isp_config_submenu" name="Technical" sequence="100" groups="isp.isp_manager"/>
+
+        <!-- ISP -->
+        <record id="isp_view_form" model="ir.ui.view">
+            <field name="name">isp.form</field>
+            <field name="model">isp</field>
+            <field name="arch" type="xml">
+                <form>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                            <field name="contract_id" attrs="{'invisible':[('type','not in','client')]}"/>
+                        </group>
+                        <group>
+                            <field name="type"/>
+                        </group>
+                    </group>
+                    <notebook>
+			<page string="Geo location">
+                            <group col="4">
+                                <field name="point" widget="geo_edit_map" attrs="{'invisible':[('type','in','fiber')]}"/>
+                                <field name="line" widget="geo_edit_map" attrs="{'invisible':[('type','not in','fiber')]}"/>
+                            </group>
+                        </page>
+                        <page string="Devices">
+                            <field name="devices_ids" readonly="1"/>
+                        </page>
+                    </notebook>
+                </form>
+            </field>
+        </record>
+        <record id="isp_view_tree" model="ir.ui.view">
+            <field name="name">isp.tree</field>
+            <field name="model">isp</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name"/>
+                    <field name="type"/>
+                </tree>
+            </field>
+        </record>
+        <record id="isp_view_search" model="ir.ui.view">
+            <field name="name">isp.search</field>
+            <field name="model">isp</field>
+            <field name="arch" type="xml">
+                <search>
+                    <filter string="Clients" name="type_client" domain="[('type','=','client')]"/>
+                    <filter string="Wireless" name="type_wireless" domain="[('type','=','wireless')]"/>
+                    <filter string="Fiber Box" name="type_fiber_box" domain="[('type','=','fiber_box')]"/>
+                    <filter string="Fiber" name="type_fiber" domain="[('type','=','fiber')]"/>
+                    <group expand="0" string="Group By">
+                        <filter string="Type" domain="[]" context="{'group_by':'type'}"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+
+        <!-- GeoEngine views  -->
+        <record id="isp_view_map" model="ir.ui.view">
+            <field name="name">ISP Network</field>
+            <field name="arch" type="xml">
+                <geoengine version="8.0">
+                    <field name="name" select="1"/>
+                </geoengine>
+            </field>
+            <field name="default_extent">-6082100.6566597, -2937391.931423402,-6082100.6566597, -2937391.931423401</field>
+            <field eval="16" name="priority"/>
+            <field name="model">isp</field>
+        </record>
+        <!-- Data Layers -->
+        <record id="isp_view_map_layer_point" model="geoengine.vector.layer">
+            <field name="geo_field_id" ref="isp.field_isp_point"/>
+            <field name="name">Network Points</field>
+            <field eval="6" name="sequence"/>
+            <field name="view_id" ref="isp_view_map"/>
+            <field name="geo_repr">basic</field>
+            <field eval="1" name="nb_class"/>
+            <field name="begin_color">yellow</field>
+        </record>
+        <record id="isp_view_map_layer_line" model="geoengine.vector.layer">
+            <field name="geo_field_id" ref="isp.field_isp_line"/>
+            <field name="name">Fiber Line</field>
+            <field eval="6" name="sequence"/>
+            <field name="view_id" ref="isp_view_map"/>
+            <field name="geo_repr">basic</field>
+            <field eval="1" name="nb_class"/>
+            <field name="begin_color">#FF680A</field>
+        </record>
+        <!-- Map Layers -->
+        <record id="isp_view_map_layer_mapbox" model="geoengine.raster.layer">
+            <field name="raster_type">mapbox</field>
+            <field name="mapbox_id">camptocamp.map-ok288g0c</field>
+            <field name="name">Layer Mapbox</field>
+            <field name="view_id" ref="isp_view_map"/>
+            <field eval="0" name="overlay"/>
+        </record>
+        <record id="isp_view_map_layer_basic" model="geoengine.raster.layer">
+            <field name="raster_type">d_wms</field>
+            <field name="name">Layer Basic</field>
+            <field name="url">vmap0.tiles.osgeo.org/wms/vmap0</field>
+            <field name="view_id" ref="isp_view_map"/>
+            <field eval="1" name="overlay"/>
+        </record>
+        <record id="isp_action" model="ir.actions.act_window">
+            <field name="name">ISP Map</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">isp</field>
+            <field name="view_mode">geoengine,tree,form</field>
+            <field name="view_type">form</field>
+            <!--field name="view_id" ref="isp_view_map"/-->
+        </record>
+        <menuitem parent="isp_technical_submenu" action="isp_action"
+                  id="isp_map_menu" name="ISP Map" sequence="0"/>
+
+
+        <!-- Net -->
+        <record id="view_isp_net_tree" model="ir.ui.view">
+            <field name="name">isp.net.tree</field>
+            <field name="model">isp.net</field>
+            <field name="arch" type="xml">
+                <tree fonts="bold:True" colors="red:state=='down';green:state in ('up')">
+                    <field name="name"/>
+                    <field name="state"/>
+                    <field name="router_id"/>
+                    <field name="ap_id"/>
+                    <!--field name="ip" /-->
+                    <!--field name="last_change"/-->
+                </tree>
+            </field>
+        </record>
+        <record model="ir.ui.view" id="isp_net_form">
+            <field name="name">isp.net.form</field>
+            <field name="model">isp.net</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="name" />
+                                <field name="is_wireless" attrs="{'readonly':[('is_fiber','=',True)]}"/>
+                                <field name="is_fiber" attrs="{'readonly':[('is_wireless','=',True)]}"/>
+                                <field name="allow_unknown"/>
+                            </group>
+                            <group>
+                                <field name="state"/>
+                                <!--field name="last_change" readonly="1"/-->
+                                <field name="router_id"  attrs="{'invisible':[('is_wireless','=',False)]}" context="{'default_is_router':1}"/>
+                                <field name="ap_id"  attrs="{'invisible':[('is_wireless','=',False)]}" context="{'default_is_ap':1}"/>
+                                <field name="manager_id"  attrs="{'invisible':[('is_fiber','=',False)]}"/>
+                            </group>
+                        </group>
+                    </sheet>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids" widget="mail_followers"/>
+                        <field name="message_ids" widget="mail_thread"/>
+                    </div>
+                </form>
+            </field>
+        </record>
+        <record model="ir.actions.act_window" id="action_isp_net">
+            <field name="name">Network</field>
+            <field name="res_model">isp.net</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+        <menuitem parent="isp_technical_submenu" action="action_isp_net"
+                  id="isp_net_menu" name="Network" sequence="30"/>
+
+
+     <!-- isp.box views -->
+        <record id="view_isp_box_tree" model="ir.ui.view">
+            <field name="name">isp.box.tree</field>
+            <field name="model">isp.box</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name"/>
+                    <field name="place_id"/>
+                </tree>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="isp_box_form">
+            <field name="name">isp.box.form</field>
+            <field name="model">isp.box</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="name" />
+                                <field name="gpon_id"/>
+                            </group>
+                            <group>
+                                <field name="place_id" context="{'default_type':'fiber_box'}"/>
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="action_isp_box">
+            <field name="name">Fiber Box</field>
+            <field name="res_model">isp.box</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <menuitem parent="isp_fiber_submenu" action="action_isp_box"
+                  id="isp_box_menu" name="Fiber Box" sequence="10"/>
+
+        <!-- isp.gpon views -->
+        <record id="view_isp_gpon_tree" model="ir.ui.view">
+            <field name="name">isp.gpon.tree</field>
+            <field name="model">isp.gpon</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name"/>
+                    <field name="net_id"/>
+                    <field name="pon_way"/>
+                    <field name="router_id"/>
+                </tree>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="isp_gpon_form">
+            <field name="name">isp.gpon.form</field>
+            <field name="model">isp.gpon</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="name"/>
+                                <field name="pon_way"/>
+                            </group>
+                            <group>
+                                <field name="net_id" context="{'default_is_fiber':1}"/>
+                                <field name="router_id" context="{'default_is_router':1}"/>
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="action_isp_gpon">
+            <field name="name">GPON</field>
+            <field name="res_model">isp.gpon</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <menuitem parent="isp_fiber_submenu" action="action_isp_gpon"
+                  id="isp_gpon_menu" name="GPON" sequence="20"/>
+
+
+        <!-- isp.manager views -->
+        <record id="view_isp_manager_tree" model="ir.ui.view">
+            <field name="name">isp.manager.tree</field>
+            <field name="model">isp.manager</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name"/>
+                    <field name="ip"/>
+                    <field name="software"/>
+                </tree>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="isp_manager_form">
+            <field name="name">isp.manager.form</field>
+            <field name="model">isp.manager</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="name" />
+                            </group>
+                            <group>
+                                <field name="ip"/>
+                                <field name="software"/>
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="action_isp_manager">
+            <field name="name">ISP User</field>
+            <field name="res_model">isp.manager</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <menuitem parent="isp_fiber_submenu" action="action_isp_manager"
+        id="isp_manager_menu" name="Manager" sequence="30"/>
+
+        <!-- Clients Monitor -->
+        <record id="view_isp_monitor_tree" model="ir.ui.view">
+            <field name="name">isp.monitor.tree</field>
+            <field name="model">isp.monitor</field>
+            <field name="arch" type="xml">
+                <tree>
+		    <field name="name"/>
+                    <!--field name="user_id" /-->
+                    <field name="upload"/>
+                    <field name="download"/>
+                    <field name="mean"/>
+                    <field name="loss"/>
+                    <field name="signal"/>
+		    <field name="create_date"/>
+                </tree>
+            </field>
+        </record>
+        <record model="ir.ui.view" id="isp_monitor_form">
+            <field name="name">isp.monitor.form</field>
+            <field name="model">isp.monitor</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group>
+                            <group>
+				<field name="contract_id"/>
+                                <field name="name"/>
+                                <field name="mean"/>
+                                <field name="loss"/>
+                            </group>
+                            <group>
+                                <field name="upload"/>
+                                <field name="download"/>
+                                <field name="signal"/>
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        <record id="view_isp_monitor_graph" model="ir.ui.view">
+            <field name="name">isp.monitor.graph</field>
+            <field name="model">isp.monitor</field>
+            <field name="arch" type="xml">
+		<graph type="bar" stacked="True">
+                    <field name="name" type="row"/>
+                    <field name="download" type="measure"/>
+                    <field name="upload" type="measure"/>
+                </graph>
+            </field>
+        </record>
+        <record model="ir.actions.act_window" id="action_isp_monitor">
+            <field name="name">Clients Monitor</field>
+            <field name="res_model">isp.monitor</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">graph,tree</field>
+        </record>
+        <menuitem parent="isp_technical_submenu" action="action_isp_monitor"
+                  id="isp_monitor_menu" name="Clients Monitor" sequence="40" groups="isp.isp_manager"/>
+
+        <!-- Devices -->
+        <record id="view_isp_device_tree" model="ir.ui.view">
+            <field name="name">isp.device.tree</field>
+            <field name="model">isp.device</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name"/>
+                    <field name="ip" />
+                    <field name="place_id" />
+                </tree>
+            </field>
+        </record>
+        <record model="ir.ui.view" id="isp_device_form">
+            <field name="name">isp.device.form</field>
+            <field name="model">isp.device</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="name"/>
+                                <field name="ip" />
+                                <field name="access_port" />
+                                <field name="access_url" widget="html"/>
+                                <field name="login"/>
+                                <field name="password"/>
+                            </group>
+                            <group>
+                                <field name="is_ap" attrs="{'readonly':[('is_client','=',True)]}"/>
+                                <field name="is_router" attrs="{'readonly':[('is_client','=',True)]}"/>
+                                <field name="is_client" attrs="{'readonly':['|',('is_ap','=',True),('is_router','=',True)]}"/>
+                                <field name="place_id" />
+                                <field name="serial_id"/>
+				<field name="contract_id" attrs="{'invisible':[('is_client','!=',True)]}"/>
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        <record model="ir.actions.act_window" id="action_isp_device">
+            <field name="name">Devices</field>
+            <field name="res_model">isp.device</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+        <menuitem parent="isp_technical_submenu" action="action_isp_device"
+                  id="isp_device_menu" name="Devices" sequence="50"/>
+
+
+        <!-- IPs -->
+        <record id="view_isp_ip_tree" model="ir.ui.view">
+            <field name="name">isp.ip.tree</field>
+            <field name="model">isp.ip</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name"/>
+                    <field name="contract_id"/>
+                    <field name="in_use"/>
+                </tree>
+            </field>
+        </record>
+        <record model="ir.ui.view" id="isp_ip_form">
+            <field name="name">isp.ip.form</field>
+            <field name="model">isp.ip</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="name"/>
+                                <field name="contract_id"/>
+                            </group>
+                            <group>
+                                <field name="in_use"/>
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        <record model="ir.actions.act_window" id="action_isp_ip">
+            <field name="name">IPs</field>
+            <field name="res_model">isp.ip</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+        <menuitem parent="isp_technical_submenu" action="action_isp_ip"
+                  id="isp_ip_menu" name="IPs" sequence="60"/>
+
+        <!-- isp.collector views -->
+
+        <record model="ir.ui.view" id="isp_collector_form">
+            <field name="name">isp.collector.form</field>
+            <field name="model">isp.collector</field>
+            <field name="arch" type="xml">
+                <form>
+                    <!--head>
+                        <button name="check_debt" type="object" string="Verificar Deudas"/>
+                    </head-->
+                    <sheet>
+                        <group col="4" colspan="4">
+                            <field name="from_number"/>
+                            <field name="test_number"/>
+                            <field name="account_sid"/>
+                            <field name="auth_token"/>
+                            <field name="block_after"/>
+                        </group>
+                        <notebook>
+                            <page string="Messages">
+                                <group>
+                                    <group>
+                                        <div>
+                                            <label string="Generated Invoice SMS" style="font-weight: bold"/>
+                                            <field name="sms_generated_invoice" nolabel="1"/>
+                                            <button name="send_generated_test_message" type="object" string="Send SMS"/>
+                                        </div>
+                                    </group>
+                                    <group>
+                                        <div>
+                                            <label style="font-weight: bold" string="Overdue Invoice SMS"/>
+                                            <field name="sms_overdue_invoice" nolabel="1"/>
+                                            <button name="send_overdue_test_message" type="object" string="Send SMS"/>
+                                        </div>
+                                    </group>
+                                </group>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="action_isp_collector">
+            <field name="name">ISP Collector</field>
+            <field name="res_model">isp.collector</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">form</field>
+            <field name="res_id">2</field>
+        </record>
+
+        <menuitem parent="isp_config_submenu" action="action_isp_collector"
+        id="isp_collector_menu" name="Collector" sequence="80"/>
+
+    </data>
+</openerp>

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+        <record model='account.analytic.journal' id='installation_journal'>
+         <field name='name'>Instalation Journal</field>
+         <field name='code'>INST</field>
+         <field name='type'>general</field>
+        </record>
+
+    </data>
+</openerp>

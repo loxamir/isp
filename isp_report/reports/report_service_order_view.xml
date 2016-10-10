@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <template id="isp_report.report_service_order_view">
+            <t t-call="report.html_container">
+                <t t-foreach="docs" t-as="o">
+                    <!-- CREATE THE PRINTABLE PAGE -->
+                    <div class="page" style="border: 0px solid black; width: 800px;font-weight:bold;margin-top: 0px">
+                        <div style="width: 100%;float: left;border: 1px solid black;">
+                            <center>
+                                <img t-if="res_company.logo" t-att-src="'data:image/png;base64,%s' % res_company.logo" style="max-height: 90px"/>
+                            </center>
+                        </div>
+                        <div style="border: 0px solid black; width: 100%;float: left">
+                            <div style="border: 0px solid black; width: 45%;px;float: left;font-size:30px;font-weight:bold">
+                                ORDÉN DE SERVICIO
+                            </div>
+                            <div style="border: 0px solid black; width: 25%;float: left;position: relative;transform: translateY(100%);">
+                                Numero: <span style="font-weight: normal" t-field="o.id"/>
+                            </div>
+                            <div style="border: 0px solid black; width: 30%;float: left;position: relative;transform: translateY(100%);">
+                                Fecha: <span style="font-weight: normal" t-field="o.create_date"/>
+                            </div>
+                        </div>
+                        <div style="border: 0px solid black; width: 100%;float: left;">
+                            <div style="border: 1px solid black;border-right: 0px solid black; width: 50%;float: left;">
+                                Cliente: <span style="font-weight: normal;" t-field="o.project_id.partner_id.name"/>
+                            </div>
+                            <div style="border: 1px solid black; width: 50%;float: left;">
+                                Telefono:  <span style="font-weight: normal;" t-field="o.project_id.partner_id.phone"/>
+                                <t t-if="o.project_id.partner_id.phone and o.project_id.partner_id.mobile">
+                                    <span style="font-weight: normal;">/</span>
+                                </t>
+                                <span style="font-weight: normal;" t-field="o.project_id.partner_id.mobile"/>
+                            </div>
+                            <div style="border-left: 1px solid black;border-right: 1px solid black; width: 100%;float: left;height: 40px;">
+                                Direccion:  <br/>
+                                <span style="font-weight: normal;" t-field="o.project_id.partner_id.street"/> -
+                                <span style="font-weight: normal;" t-field="o.project_id.partner_id.barrio"/> -
+                                <span style="font-weight: normal;" t-field="o.project_id.partner_id.city_id.name"/>
+                            </div>
+                            <div style="border: 1px solid black; width: 30%;float: left;border-right: 0px solid black;">
+                                Usuario: <span style="font-weight: normal;" t-field="o.project_id.username"/>
+                            </div>
+                            <div style="border: 1px solid black; width: 70%;float: left;">
+                                <div style="float: left">Plan:</div>
+                                <div style="font-weight: normal;float: left;margin-left: 50px">
+                                    Upload: <span t-field="o.project_id.upload"/> -
+                                    Download: <span t-field="o.project_id.download"/>
+                                </div>
+
+                            </div>
+                        </div>
+                        <div style="border: 0px solid black; width: 100%;float: left;">
+                            Solicitud:
+                            <table style="border:1px solid black; width: 100%;">
+                                <tr style="border:1px solid black;font-weight:bold">
+                                    <td style="border-right:1px solid black;">
+                                        Código Producto
+                                    </td>
+                                    <td style="border-right:1px solid black;">
+                                        Cantidad
+                                    </td>
+                                    <td style="border-right:1px solid black;">
+                                        Descripción del Producto
+                                    </td>
+                                    <td style="width: 150px;">
+                                        Valor
+                                    </td>
+                                </tr>
+                                <tr style="height: 100px">
+                                    <td style="border-right:1px solid black;"><br/>
+                                    </td>
+                                    <td style="border-right:1px solid black;"><br/>
+                                    </td>
+                                    <td style="border-right:1px solid black;"><br/>
+                                    </td>
+                                    <td><br/>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                        <div style="border: 0px solid black; width: 100%;float: left;">
+                            <div style="border: 0px solid black;">
+                                Observaciones del servicio
+                            </div>
+                            <div style="border: 1px solid black;height: 100px;font-weight: normal">
+                            <span t-field="o.description"/>
+                            </div>
+                        </div>
+                        <div style="border: 1px solid black; width: 100%;float: left;">
+                            <div style="border: 0px solid black; width: 20%;float: left;">
+                                Ruteador Propio  ( <span style="padding-left:10px">)</span>
+                            </div>
+                            <div style="border: 0px solid black; width: 45%;float: left;">
+                                Marca del Ruteador:
+                            </div>
+                            <div style="border: 0px solid black; width: 35%;float: left;">
+                                Modelo:
+                            </div>
+                        </div>
+                        <div style="border: 0px solid black; width: 100%;float: left;height: 20px;"/>
+
+                        <div style="border: 0px solid black; width: 100%;float: left;height: 40px">
+                            Los valores especificados arriba puede ser facturados en  ___/___/______
+                        </div>
+                        <div style="border: 0px solid black; width: 100%;float: left;">
+                            <div style="border: 0px solid black;width: 50%;float: left;position: relative;left: 100px;">
+                                <div style="border: 0px solid black;width: 200px;height: 50px;text-align: center; font-weight: bold;">
+                                    Aprobacion del Cliente
+                                </div>
+                                <div  style="border: 1px solid black;width: 200px;height: 1px;"/>
+                                <div style="border: 0px solid black;width: 200px;float: left;text-align: center">
+                                    Nombre Legible
+                                </div>
+                            </div>
+                            <div style="border: 0px solid black;width: 50%;float: left;position: relative;left: 100px;">
+                                <div style="border: 0px solid black;width: 200px;height: 50px;text-align: center;font-weight: bold;">
+                                    Técnico Responsable
+                                </div>
+                                <div  style="border: 1px solid black;width: 200px;height: 1px;"/>
+                                <div style="border: 0px solid black;width: 200px;float: left;text-align: center">
+                                    Nombre
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </t>
+            </t>
+        </template>
+    </data>
+</openerp>

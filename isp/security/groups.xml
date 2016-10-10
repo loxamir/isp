@@ -1,0 +1,43 @@
+<?xml version="1.0" ?>
+<openerp>
+    <data>
+
+        <!-- Application -->
+        <record id="isp" model="ir.module.category">
+            <field name="name">ISP</field>
+        </record>
+
+        <!-- Group of attendant -->
+        <record id="isp_attendant" model="res.groups">
+            <field name="name">ISP Attendant</field>
+            <field name="category_id" ref="isp"/>
+            <field name="implied_ids" eval="[(4, ref('base.group_user'))]"/>
+            <field name="comment">The user will have access to the client information</field>
+        </record>
+
+        <!-- Group of technical -->
+        <record id="isp_technical" model="res.groups">
+            <field name="name">ISP Technical</field>
+            <field name="category_id" ref="isp"/>
+            <field name="implied_ids" eval="[(4, ref('isp_attendant'))]"/>
+            <!--field name="implied_ids" eval="[(4, ref('base_geoengine.group_geoengine_user'))]"/-->
+            <field name="comment">The user will be able to access and edit the client configuration</field>
+        </record>
+
+        <!-- Group of network manager -->
+        <record id="isp_manager" model="res.groups">
+            <field name="name">Network Manager</field>
+            <field name="category_id" ref="isp"/>
+            <field name="implied_ids" eval="[(4, ref('isp_technical'))]"/>
+            <field name="comment">The user will have access to the client information</field>
+        </record>
+
+        <!-- Group of network manager -->
+        <record id="isp_monitor" model="res.groups">
+            <field name="name">Network Monitor</field>
+            <field name="category_id" ref="base.module_category_hidden"/>
+            <field name="comment">The permision is planed for equipment that make measurements</field>
+        </record>
+
+    </data>
+</openerp>

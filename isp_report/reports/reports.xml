@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <report
+            id="report_service_order"
+            string="Ordén de Servicio"
+            model="project.task"
+            report_type="qweb-pdf"
+            file="isp_report.report_service_order_view"
+            name="isp_report.report_service_order_view"
+        />
+    </data>
+</openerp>
