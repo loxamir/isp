@@ -5,7 +5,7 @@
 
 Widgets
 ======================================
-Modulo base para los widgets
+Modulo that alows use the dygraph.js graphps on formularies
 
     """,
     'category': 'Usability',

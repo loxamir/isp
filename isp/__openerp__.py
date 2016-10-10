@@ -7,13 +7,13 @@
     'name': 'ISP Manager',
     'description': """
 
-    Manages an ISP
+    Manages an ISP, see this video for more details https://www.youtube.com/watch?v=zJsT28EVaRE
 
     """,
     'category': 'isp',
-    'author': 'Rossa S.A.',
+    'author': 'Marcelo Pickler',
     'website': 'http://www.sistema.social',
-    'version': '0.1',
+    'version': '1.0',
     'depends': [
         'base',
         'product',

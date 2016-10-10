@@ -7,13 +7,13 @@
 	'name': 'ISP Manager Report',
 	'description': """
 
-    Manages an ISP 
+    Create service order report for ISP
 
     """,
 	'category': 'isp',
-	'author': 'Rossa S.A.',
+	'author': 'Marcelo Pickler',
 	'website': 'http://www.rossa.com.py',
-	'version': '0.1',
+	'version': '1.0',
 	'depends': [
 		'isp',
 	],
