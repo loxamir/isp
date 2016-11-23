@@ -236,7 +236,8 @@ sub accounting_start {
 
         my $sth = $dbh1->prepare("SELECT pt.name,aa.state from account_analytic_account aa
 inner join account_analytic_invoice_line ail on aa.id = ail.analytic_account_id
-inner join product_template pt on ail.product_id = pt.id
+inner join product_product pp on ail.product_id = pp.id
+inner join product_template pt on pp.product_tmpl_id = pt.id
 and pt.is_internet = 't'
 and aa.username='$RAD_REQUEST{'User-Name'}'");
 		$sth->execute();
